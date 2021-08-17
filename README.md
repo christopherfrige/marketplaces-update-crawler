@@ -7,8 +7,7 @@ Um web crawler que indexa informação de atualizações dos principais marketpl
 
 ## Introdução
 
-Após
-
+Clone o repositório para uma pasta local e configure como descrito nos tópicos seguintes
 ## Configurando o ambiente
 
 Para que não seja necessário instalar as bibliotecas diretamente no computador e que o projeto seja executado de maneira local, é necessário as seguintes etapas.
