@@ -1,7 +1,7 @@
 from utilities.GlobalVariables import *
 from services.SlackBot import enviaMensagem, enviaMensagemAlteracao
 
-# Consulta no mini banco de dados para ver se houveram alterações
+# Consulta obanco de dados para ver se houveram alterações (novas postagens)
 def compararAlteracoes(MKTPLACE_CODE, titulo, url, descricao):
     temMudancas = False
     with open(DATABASE_FILE_DIRECTORY + "\database.txt", mode="r", encoding='utf8') as db:
@@ -19,7 +19,7 @@ def compararAlteracoes(MKTPLACE_CODE, titulo, url, descricao):
         with open (DATABASE_FILE_DIRECTORY + "\database.txt", mode="w", encoding='utf8') as db:
             db.writelines(linhas)
 
-
+# Consulta o banco de dados em busca em busca de alterações (novas versões)
 def compararVersoes(MKTPLACE_CODE, versaoDoDia, url):
     temMudancas = False
     with open(DATABASE_FILE_DIRECTORY + "\database.txt", mode="r", encoding='utf8') as db:

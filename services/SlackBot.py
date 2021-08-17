@@ -1,6 +1,5 @@
 from slack_sdk import WebClient
-from utilities.Tokens import SLACK_TOKEN
-from utilities.GlobalVariables import MARKETPLACES
+from utilities.GlobalVariables import MARKETPLACES, SLACK_TOKEN
 
 def enviaMensagem(MKTPLACE_CODE, title, url, descricao):
     slack_client = WebClient(SLACK_TOKEN)
