@@ -1,5 +1,4 @@
 # Rodar as funções de cada um dos marketplaces aqui
-# Definir um schedule pra rodar (diariamente ou semanalmente)
 
 from marketplaces.amazon import amazon
 from marketplaces.b2w import b2w
@@ -8,6 +7,8 @@ from marketplaces.mercadolivre import mercadolivre
 from marketplaces.viavarejo import viavarejo
 
 def main():
+    print("Procurando por alterações...")
+    #Marketplaces que serão investigados
     amazon()
     b2w()
     magazine()
