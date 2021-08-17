@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from services.SlackBot import enviaMensagem, enviaMensagemAlteracao
-from utilities.GlobalVariables import MAGAZINE_CODE, DATABASE_FILE_DIRECTORY
+from services.DatabaseComparisons import compararAlteracoes
+from utilities.GlobalVariables import MAGAZINE_CODE
 
 def magazine():
     headers = {"User-Agent": 
@@ -17,22 +17,6 @@ def magazine():
     link = soup.find(class_="hkb-category__link")
     url = link.get('href')
 
-    # Consulta no mini banco de dados para ver se houveram alterações
-    temMudancas = False
-    with open(DATABASE_FILE_DIRECTORY + "\database.txt") as db:
-        linhas = db.readlines()
-        tituloDB = linhas[MAGAZINE_CODE].strip()
-        #print(titulo)
-        #print(tituloDB)
-        if titulo != tituloDB:
-            temMudancas = True
+    compararAlteracoes(MAGAZINE_CODE, titulo, url, descricao)
 
-    if temMudancas:
-        enviaMensagem(MAGAZINE_CODE, titulo, url, descricao)
-        print("Tiveram mudanças Magazine Luiza")
-        
-        linhas[MAGAZINE_CODE] = titulo + "\n"
-        with open (DATABASE_FILE_DIRECTORY + "\database.txt", "w") as db:
-            db.writelines(linhas)
 
-magazine()

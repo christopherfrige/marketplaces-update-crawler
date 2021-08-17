@@ -1,17 +1,11 @@
 Changes to the Amazon API Services Developer Agreement, Data Protection Policy, and Acceptable Use Policy
-Envio de Imagens para o Mktp B2W - Prazo n�o definido
+Envio de Imagens para o Mktp B2W - Prazo não definido
 ########## AREA PARA CARREFOUR ##################################
 ########## AREA PARA DAFITI #####################################
 ########## AREA PARA LEROYMERLIN ################################
 ########## AREA PARA MM #########################################
-Importante: Nova Taxa de Comiss�o
-Nova vers�o do gateway MercadoPagoV2 para VTEX FEATURE VTEX
+Importante: Nova Taxa de Comissão
+Nova versão do gateway MercadoPagoV2 para VTEX FEATURE VTEX
 ########## AREA PARA NETSHOES ###################################
 ['2.0', '4.0', '3.0']
 ########## AREA PARA ZOOM #######################################
-
-
-
-Cada linha corresponde ao código correspondente da loja+1. Exemplo:
-AMAZON_CODE = 0
-Linha que armazena informações sobre a Amazon = 1

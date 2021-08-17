@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from services.SlackBot import enviaMensagem, enviaMensagemAlteracao
-from utilities.GlobalVariables import B2W_CODE, DATABASE_FILE_DIRECTORY
+from services.DatabaseComparisons import compararAlteracoes
+from utilities.GlobalVariables import B2W_CODE
 
 def b2w():
     page = requests.get("https://desenvolvedores.skyhub.com.br/comunicados/comunicados-2021")
@@ -14,22 +14,4 @@ def b2w():
     link = soup.find_all("a", class_="reset-3c756112--card-6570f064--whiteCard-fff091a4--card-5e635eb5")
     url = "https://desenvolvedores.skyhub.com.br/" + link[0].get('href')
 
-    # Consulta no mini banco de dados para ver se houveram alterações
-    temMudancas = False
-    with open(DATABASE_FILE_DIRECTORY + "\database.txt", "r") as db:
-        linhas = db.readlines()
-        tituloDB = linhas[B2W_CODE].strip()
-        #print(titulo)
-        #print(tituloDB)
-        if titulo != tituloDB:
-            temMudancas = True
-
-    if temMudancas:
-        enviaMensagem(B2W_CODE, titulo, url, descricao)
-        print("Tiveram mudanças B2W")
-        
-        linhas[B2W_CODE] = titulo + "\n"
-        with open (DATABASE_FILE_DIRECTORY + "\database.txt", "w") as db:
-            db.writelines(linhas)
-
-b2w()
+    compararAlteracoes(B2W_CODE, titulo, url, descricao)
