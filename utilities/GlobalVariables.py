@@ -1,3 +1,5 @@
+# Código de identificação dos marketplaces, para melhor visualização nos outros arquivos
+
 AMAZON_CODE = 0
 
 B2W_CODE = 1
@@ -30,6 +32,7 @@ MARKETPLACES = {
     9: "Via Varejo"
 }
 
+# Variáveis necessárias para o funcionamento do programa, posteriormente transformar em variáveis de ambiente
 DATABASE_FILE_DIRECTORY = "DB_FOLDER_DIRECTORY"
 
 SLACK_BOT = "SLACK_BOT_TOKEN"
