@@ -54,7 +54,7 @@ Para que não seja necessário instalar as bibliotecas diretamente no computador
 
         pip install -r requirements.txt
 
-    </br>
+    <br>
 
 - **Setando variáveis de ambiente:**
 
@@ -68,7 +68,7 @@ Para que não seja necessário instalar as bibliotecas diretamente no computador
 
     Para mais informações de como pegar o token de um Bot e utilizá-lo, crie um servidor no Slack para testes e leia o tópico **"Criando um bot no Slack"** [dessa publicação](https://medium.com/@gpiress/criando-um-bot-no-slack-dd1895cc6422) no Medium.
 
-    **Exemplo para Linux**</br>
+    **Exemplo para Linux**<br>
 
     No terminal, digitar:
 
@@ -85,7 +85,7 @@ Para que não seja necessário instalar as bibliotecas diretamente no computador
         echo $SLACK_TOKEN
         echo $TABLE_NAME
 
-    **Exemplo para Windows** </br>
+    **Exemplo para Windows** <br>
 
     No terminal, digitar:
 
@@ -96,11 +96,14 @@ Para que não seja necessário instalar as bibliotecas diretamente no computador
 
 ## Execução local
 
-Para ver o indexador em ação, após a devida configuração, digitar no terminal:
+Para ver o indexador em ação, após a devida configuração, digitar no terminal Linux:
 
+    python3 run.py
+
+Ou no terminal Windows:
     python run.py
 
-É possível fazer alterações para indexar e comparar apenas os marketplaces selecionados, para isso basta alterar a rotina da função **main** do mesmo arquivo. </br>
+É possível fazer alterações para indexar e comparar apenas os marketplaces selecionados, para isso basta alterar a rotina da função **main** do mesmo arquivo. <br>
 Como por exemplo:
 
     def main(event, context):
