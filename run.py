@@ -6,13 +6,22 @@ from marketplaces.magazine import magazine
 from marketplaces.mercadolivre import mercadolivre
 from marketplaces.viavarejo import viavarejo
 
-def main():
+def main(event, context):
     print("Procurando por alterações...")
-    #Marketplaces que serão investigados
+
     amazon()
     b2w()
     magazine()
     mercadolivre()
     viavarejo()
 
-main()
+    print("Verificação finalizada!")
+
+    return {
+        "status_code": 200,
+        "status": "OK"
+    }
+
+
+if __name__ == '__main__':
+    main(None, None)
