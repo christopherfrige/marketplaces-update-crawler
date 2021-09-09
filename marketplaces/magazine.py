@@ -12,11 +12,10 @@ def magazine():
 
     titulo_raw = soup.find(class_="hkb-category__title")
     titulo = titulo_raw.text.strip()
-    descricao_raw = soup.find(class_="hkb-category__description")
-    descricao = descricao_raw.text
+
     link = soup.find(class_="hkb-category__link")
     url = link.get('href')
 
-    compararAlteracoes(MAGAZINE_CODE, titulo, url, descricao)
+    compararAlteracoes(MAGAZINE_CODE, titulo, url)
 
 

@@ -1,20 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
-from services.DatabaseComparisons import compararVersoes
+from services.DatabaseComparisons import compararAlteracoes
 from utilities.GlobalVariables import VIAVAREJO_CODE
 
 def viavarejo():
-    page = requests.get("https://desenvolvedores.viavarejo.com.br/api-portal/swagger")
-    soup = BeautifulSoup(page.text, "html.parser")
-
-    titulo = "Nova versão de API"
     url = "https://desenvolvedores.viavarejo.com.br/api-portal/swagger"
 
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text, "html.parser")
+    
     # Pega as versões do site e coloca numa lista
-    versaoDoDia = []
+    versaoAtual = []
     for linha in soup.select("table tbody tr"):
         # Seleciona cada linha individualmente
         temp = linha.select("td")
-        versaoDoDia.append(temp[1].text)     
+        versaoAtual.append(temp[1].text)     
 
-    compararVersoes(VIAVAREJO_CODE, versaoDoDia, url)
+    compararAlteracoes(VIAVAREJO_CODE, versaoAtual, url , "Nova versão da API!")

@@ -17,4 +17,4 @@ def amazon():
     # Chama a função para comparar com o dado presente no banco de dados
     # Se confirmado que há alterações, uma mensagem no Slack é enviada, e o banco de dados
     # É atualizado com os novos valores
-    compararAlteracoes(AMAZON_CODE, titulo, url, False)
+    compararAlteracoes(AMAZON_CODE, titulo, url)

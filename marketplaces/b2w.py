@@ -9,9 +9,8 @@ def b2w():
 
     titulo_raw = soup.find_all(class_="text-4505230f--UIH400-4e41e82a--textContentFamily-49a318e1")
     titulo = titulo_raw[3].text
-    descricao_raw = soup.find_all(class_="text-4505230f--TextH400-3033861f--textContentFamily-49a318e1")
-    descricao = descricao_raw[2].text
+
     link = soup.find_all("a", class_="reset-3c756112--card-6570f064--whiteCard-fff091a4--card-5e635eb5")
     url = "https://desenvolvedores.skyhub.com.br/" + link[0].get('href')
 
-    compararAlteracoes(B2W_CODE, titulo, url, descricao)
+    compararAlteracoes(B2W_CODE, titulo, url)

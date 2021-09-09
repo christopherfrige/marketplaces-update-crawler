@@ -13,5 +13,5 @@ def mercadolivre():
     titulo = titulo_raw.text
     url = "https://www.mercadopago.com.br/developers/pt/guides/resources/changelog/current-year"
 
-    compararAlteracoes(MERCADOLIVRE_CODE, titulo, url, False)
+    compararAlteracoes(MERCADOLIVRE_CODE, titulo, url)
 
