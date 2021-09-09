@@ -1,40 +1,48 @@
-from utilities.GlobalVariables import *
-from services.SlackBot import enviaMensagem, enviaMensagemAlteracao
+from services.SlackBot import enviaMensagem
+from utilities.GlobalVariables import MARKETPLACES
+from utilities.EnviromentVariables import TABLE_NAME
+import boto3
+from boto3.dynamodb.conditions import Key
 
-# Consulta obanco de dados para ver se houveram alterações (novas postagens)
-def compararAlteracoes(MKTPLACE_CODE, titulo, url, descricao):
-    temMudancas = False
-    with open(DATABASE_FILE_DIRECTORY + "\database.txt", mode="r", encoding='utf8') as db:
-        linhas = db.readlines()
-        tituloDB = linhas[MKTPLACE_CODE].strip()
-    
-        if titulo != tituloDB:
-            temMudancas = True
+def inicializaBanco():
+    dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
+    table = dynamodb.Table(TABLE_NAME)
+    return table
 
-    if temMudancas:
-        enviaMensagem(MKTPLACE_CODE, titulo, url, descricao)
-        print(f"Tiveram mudanças {MARKETPLACES.get(MKTPLACE_CODE)}")
-        
-        linhas[MKTPLACE_CODE] = titulo + "\n"
-        with open (DATABASE_FILE_DIRECTORY + "\database.txt", mode="w", encoding='utf8') as db:
-            db.writelines(linhas)
+def insereNoBanco(marketplaceID, texto, table):
+    response = table.put_item(
+                Item = {
+                    "marketplace": marketplaceID,
+                    "texto": texto
+                }
+            )
+    return response
 
-# Consulta o banco de dados em busca em busca de alterações (novas versões)
-def compararVersoes(MKTPLACE_CODE, versaoDoDia, url):
-    temMudancas = False
-    with open(DATABASE_FILE_DIRECTORY + "\database.txt", mode="r", encoding='utf8') as db:
-        linhas = db.readlines()
-        versaoDB = linhas[MKTPLACE_CODE].strip()
-        
-        if str(versaoDoDia) != versaoDB:
-            temMudancas = True
+def procuraNoBanco(marketplaceID, table):
+    response = table.get_item(
+        Key={
+            "marketplace": marketplaceID 
+        }
+    )
+    return response
 
-    if temMudancas:
-        titulo = "Nova versão de API"
-        enviaMensagemAlteracao(MKTPLACE_CODE, titulo, url)        
-        print("Tiveram mudanças Via Varejo")
+def compararAlteracoes(MKTPLACE_CODE, texto, url, versao=False):
+    table = inicializaBanco()
+    marketplaceID = MARKETPLACES.get(MKTPLACE_CODE)
 
-        linhas[MKTPLACE_CODE] = str(versaoDoDia) + "\n"
-        with open (DATABASE_FILE_DIRECTORY + "\database.txt", mode="w", encoding='utf8') as db:
-            db.writelines(linhas)
+    # Pega a linha do marketplace na tabela
+    response = procuraNoBanco(marketplaceID, table)    
 
+    # Se o dado do site diverge do contido no banco de dados
+    try:
+        if (texto != response['Item']['texto']):
+            insereNoBanco(marketplaceID, texto, table)            
+            print(f"Houveram mudanças em {marketplaceID}!")
+            enviaMensagem(MKTPLACE_CODE, texto, url, versao)
+
+    except KeyError:
+        print(f"Marketplace {marketplaceID} não encontrado! Inserindo-o...")
+        insereNoBanco(marketplaceID, texto, table)
+
+if __name__ == "__main__":
+    compararAlteracoes(0, "teste amazon", "random_url")
