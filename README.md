@@ -1,4 +1,4 @@
-# Marketplaces-update-crawler
+# Marketplaces-update-tracker
 
 Um web crawler que indexa informação de atualizações dos principais marketplaces brasileiros, centralizando a informação em um chat do Slack. <br>
 
