@@ -72,8 +72,8 @@ Para que não seja necessário instalar as bibliotecas diretamente no computador
 
     No terminal, digitar:
 
-        SLACK_TOKEN="TOKEN_DO_SLACK_BOT"
-        TABLE_NAME="NOME_DA_TABELA_NO_DYNAMODB"
+        export SLACK_TOKEN="TOKEN_DO_SLACK_BOT"
+        export TABLE_NAME="NOME_DA_TABELA_NO_DYNAMODB"
 
     Para validar as variáveis:
 
